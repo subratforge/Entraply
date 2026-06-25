@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entraply — Business Transformation Partner</title>
+<meta name="description" content="Entraply helps salons, gyms, clinics, restaurants and local businesses get a website, automation, and a real lead system — without hiring a tech team.">
+<link rel="icon" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --ink:#091628;
+    --ink-soft:#16263c;
+    --blue:#0A70F3;
+    --blue-light:#3B9CFF;
+    --paper:#F7F9FC;
+    --paper-warm:#EFF3F8;
+    --slate:#5B6878;
+    --slate-light:#8995A4;
+    --line:#DDE4EC;
+    --white:#ffffff;
+    --grad: linear-gradient(100deg, var(--blue) 0%, var(--blue-light) 100%);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter',sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--blue);color:white;}
+
+  h1,h2,h3,h4{
+    font-family:'Space Grotesk',sans-serif;
+    letter-spacing:-0.02em;
+    line-height:1.05;
+  }
+
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  button{font-family:inherit;border:none;cursor:pointer;background:none;}
+
+  :focus-visible{
+    outline:2px solid var(--blue);
+    outline-offset:3px;
+    border-radius:2px;
+  }
+
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  /* ============ NAV ============ */
+  header{
+    position:fixed;
+    top:0;left:0;right:0;
+    z-index:100;
+    background:rgba(247,249,252,0.85);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid transparent;
+    transition:border-color .3s ease, background .3s ease;
+  }
+  header.scrolled{
+    border-bottom-color:var(--line);
+    background:rgba(247,249,252,0.96);
+  }
+  nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:16px 32px;
+    max-width:1180px;
+    margin:0 auto;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:1.2rem;
+    color:var(--ink);
+  }
+  .brand img{height:34px;width:34px;}
+  .nav-links{
+    display:flex;
+    align-items:center;
+    gap:36px;
+    list-style:none;
+  }
+  .nav-links a{
+    font-size:0.95rem;
+    font-weight:500;
+    color:var(--ink-soft);
+    position:relative;
+    padding:4px 0;
+    transition:color .2s ease;
+  }
+  .nav-links a:hover{color:var(--blue);}
+  .nav-links a::after{
+    content:'';
+    position:absolute;
+    left:0;bottom:-2px;
+    width:0;height:2px;
+    background:var(--grad);
+    transition:width .25s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--ink);
+    color:white !important;
+    padding:10px 20px;
+    border-radius:8px;
+    font-size:0.9rem;
+    font-weight:600;
+    transition:background .2s ease, transform .2s ease;
+  }
+  .nav-cta:hover{background:var(--blue);transform:translateY(-1px);}
+  .nav-toggle{display:none;}
+
+  /* ============ HERO ============ */
+  .hero{
+    position:relative;
+    padding:170px 0 110px;
+    overflow:hidden;
+  }
+  .hero-bg-cut{
+    position:absolute;
+    top:0;right:-10%;
+    width:65%;
+    height:100%;
+    background:
+      radial-gradient(circle at 70% 20%, rgba(10,112,243,0.10), transparent 60%);
+    pointer-events:none;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.15fr 0.85fr;
+    gap:60px;
+    align-items:center;
+    position:relative;
+  }
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size:0.8rem;
+    font-weight:600;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--blue);
+    background:rgba(10,112,243,0.08);
+    padding:8px 14px;
+    border-radius:30px;
+    margin-bottom:24px;
+  }
+  .eyebrow .dot{
+    width:6px;height:6px;border-radius:50%;
+    background:var(--blue);
+    animation:pulse 2s infinite;
+  }
+  @keyframes pulse{
+    0%,100%{opacity:1;}
+    50%{opacity:0.3;}
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 4.6vw, 3.8rem);
+    font-weight:700;
+    color:var(--ink);
+    margin-bottom:26px;
+  }
+  .hero h1 .cut-line{
+    position:relative;
+    display:inline-block;
+  }
+  .hero h1 .struck{
+    color:var(--slate-light);
+    text-decoration:line-through;
+    text-decoration-color:var(--slate-light);
+    text-decoration-thickness:2px;
+  }
+  .hero h1 .grad-text{
+    background:var(--grad);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .hero p.lead{
+    font-size:1.15rem;
+    color:var(--slate);
+    line-height:1.65;
+    max-width:520px;
+    margin-bottom:38px;
+  }
+  .hero-ctas{
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+    margin-bottom:48px;
+  }
+  .btn-primary{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:var(--grad);
+    color:white;
+    padding:16px 28px;
+    border-radius:10px;
+    font-weight:600;
+    font-size:1rem;
+    box-shadow:0 8px 24px rgba(10,112,243,0.28);
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .btn-primary:hover{
+    transform:translateY(-2px);
+    box-shadow:0 12px 30px rgba(10,112,243,0.38);
+  }
+  .btn-secondary{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:transparent;
+    color:var(--ink);
+    padding:16px 24px;
+    border-radius:10px;
+    font-weight:600;
+    font-size:1rem;
+    border:1.5px solid var(--line);
+    transition:border-color .2s ease, background .2s ease;
+  }
+  .btn-secondary:hover{
+    border-color:var(--ink);
+    background:white;
+  }
+  .hero-trust{
+    display:flex;
+    gap:28px;
+    flex-wrap:wrap;
+  }
+  .hero-trust .stat{
+    display:flex;
+    flex-direction:column;
+  }
+  .hero-trust .stat b{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:1.5rem;
+    color:var(--ink);
+  }
+  .hero-trust .stat span{
+    font-size:0.8rem;
+    color:var(--slate);
+  }
+
+  /* Hero visual - the "cut" card */
+  .hero-visual{
+    position:relative;
+    height:440px;
+  }
+  .cut-card{
+    position:absolute;
+    inset:0;
+    border-radius:24px;
+    background:linear-gradient(160deg, var(--ink) 0%, var(--ink-soft) 100%);
+    overflow:hidden;
+    box-shadow:0 30px 60px -20px rgba(9,22,40,0.4);
+  }
+  .cut-card .arrow-stripe{
+    position:absolute;
+    width:160%;
+    height:90px;
+    background:var(--grad);
+    top:48%;
+    left:-30%;
+    transform:rotate(-28deg);
+    opacity:0.95;
+  }
+  .cut-card .arrow-stripe::after{
+    content:'';
+    position:absolute;
+    right:8%;
+    top:50%;
+    width:0;height:0;
+    border-left:32px solid var(--blue-light);
+    border-top:22px solid transparent;
+    border-bottom:22px solid transparent;
+    transform:translateY(-50%);
+  }
+  .cut-card .label-before, .cut-card .label-after{
+    position:absolute;
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    color:white;
+    z-index:2;
+  }
+  .cut-card .label-before{
+    top:14%;
+    left:8%;
+    font-size:0.95rem;
+    color:rgba(255,255,255,0.45);
+  }
+  .cut-card .label-before .big{
+    display:block;
+    font-size:1.6rem;
+    margin-top:4px;
+    text-decoration:line-through;
+    color:rgba(255,255,255,0.35);
+  }
+  .cut-card .label-after{
+    bottom:12%;
+    right:8%;
+    text-align:right;
+    font-size:0.95rem;
+    color:rgba(255,255,255,0.85);
+  }
+  .cut-card .label-after .big{
+    display:block;
+    font-size:1.7rem;
+    margin-top:4px;
+    background:linear-gradient(100deg,#fff,#bcd9ff);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+
+  /* ============ SECTION COMMON ============ */
+  section{
+    padding:110px 0;
+    position:relative;
+  }
+  .section-head{
+    max-width:640px;
+    margin-bottom:64px;
+  }
+  .section-head .eyebrow{margin-bottom:18px;}
+  .section-head h2{
+    font-size:clamp(1.8rem, 3vw, 2.5rem);
+    font-weight:700;
+    margin-bottom:18px;
+  }
+  .section-head p{
+    font-size:1.05rem;
+    color:var(--slate);
+    line-height:1.6;
+  }
+  .center{text-align:center;margin-left:auto;margin-right:auto;}
+
+  /* ============ PROBLEM (psychology: loss framing) ============ */
+  .problem{
+    background:var(--ink);
+    color:white;
+  }
+  .problem .section-head h2{color:white;}
+  .problem .section-head p{color:rgba(255,255,255,0.65);}
+  .problem .eyebrow{
+    background:rgba(10,112,243,0.18);
+    color:var(--blue-light);
+  }
+  .problem-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1px;
+    background:rgba(255,255,255,0.08);
+    border-radius:16px;
+    overflow:hidden;
+  }
+  .problem-card{
+    background:var(--ink);
+    padding:36px 30px;
+    transition:background .25s ease;
+  }
+  .problem-card:hover{background:#0d1f38;}
+  .problem-card .icon{
+    width:44px;height:44px;
+    border-radius:10px;
+    background:rgba(10,112,243,0.15);
+    display:flex;align-items:center;justify-content:center;
+    margin-bottom:20px;
+  }
+  .problem-card h3{
+    font-size:1.1rem;
+    margin-bottom:10px;
+    color:white;
+  }
+  .problem-card p{
+    font-size:0.92rem;
+    color:rgba(255,255,255,0.55);
+    line-height:1.55;
+  }
+
+  /* ============ SERVICES ============ */
+  .services-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px;
+  }
+  .service-card{
+    background:white;
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:34px 28px;
+    position:relative;
+    overflow:hidden;
+    transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .service-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 24px 48px -16px rgba(9,22,40,0.14);
+    border-color:transparent;
+  }
+  .service-card .num{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:0.8rem;
+    font-weight:600;
+    color:var(--blue);
+    letter-spacing:0.05em;
+    margin-bottom:18px;
+    display:block;
+  }
+  .service-card .icon-box{
+    width:48px;height:48px;
+    border-radius:12px;
+    background:var(--paper-warm);
+    display:flex;align-items:center;justify-content:center;
+    margin-bottom:22px;
+  }
+  .service-card h3{
+    font-size:1.2rem;
+    margin-bottom:10px;
+  }
+  .service-card p{
+    font-size:0.93rem;
+    color:var(--slate);
+    line-height:1.6;
+    margin-bottom:18px;
+  }
+  .service-card .tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .service-card .tags span{
+    font-size:0.78rem;
+    color:var(--ink-soft);
+    background:var(--paper-warm);
+    padding:5px 10px;
+    border-radius:6px;
+  }
+  .service-card::before{
+    content:'';
+    position:absolute;
+    top:0;left:0;
+    width:3px;height:0;
+    background:var(--grad);
+    transition:height .3s ease;
+  }
+  .service-card:hover::before{height:100%;}
+
+  /* ============ PROCESS ============ */
+  .process{
+    background:var(--paper-warm);
+  }
+  .process-list{
+    display:flex;
+    flex-direction:column;
+  }
+  .process-row{
+    display:grid;
+    grid-template-columns:80px 1fr 1fr;
+    gap:32px;
+    align-items:start;
+    padding:36px 0;
+    border-top:1px solid var(--line);
+  }
+  .process-row:last-child{border-bottom:1px solid var(--line);}
+  .process-row .step-num{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:2.2rem;
+    font-weight:700;
+    color:transparent;
+    -webkit-text-stroke:1.5px var(--slate-light);
+  }
+  .process-row h3{
+    font-size:1.25rem;
+    font-weight:600;
+    padding-top:6px;
+  }
+  .process-row p{
+    color:var(--slate);
+    line-height:1.65;
+    font-size:0.97rem;
+  }
+
+  /* ============ WHY US ============ */
+  .why-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:center;
+  }
+  .why-list{
+    display:flex;
+    flex-direction:column;
+    gap:28px;
+  }
+  .why-item{
+    display:flex;
+    gap:18px;
+  }
+  .why-item .check{
+    flex-shrink:0;
+    width:30px;height:30px;
+    border-radius:50%;
+    background:var(--grad);
+    display:flex;align-items:center;justify-content:center;
+    margin-top:2px;
+  }
+  .why-item h4{
+    font-size:1.08rem;
+    margin-bottom:6px;
+  }
+  .why-item p{
+    color:var(--slate);
+    font-size:0.93rem;
+    line-height:1.55;
+  }
+  .why-visual{
+    background:var(--ink);
+    border-radius:20px;
+    padding:48px 40px;
+    position:relative;
+    overflow:hidden;
+  }
+  .why-visual .quote-mark{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:4rem;
+    color:var(--blue);
+    line-height:1;
+    margin-bottom:12px;
+  }
+  .why-visual p{
+    color:white;
+    font-size:1.15rem;
+    line-height:1.55;
+    margin-bottom:24px;
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:500;
+  }
+  .why-visual .attribution{
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .why-visual .av{
+    width:42px;height:42px;
+    border-radius:50%;
+    background:var(--grad);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:700;
+    color:white;
+    font-family:'Space Grotesk',sans-serif;
+  }
+  .why-visual .attribution b{color:white;font-size:0.92rem;display:block;}
+  .why-visual .attribution span{color:rgba(255,255,255,0.5);font-size:0.82rem;}
+
+  /* ============ CTA BAND ============ */
+  .cta-band{
+    background:var(--grad);
+    border-radius:28px;
+    margin:0 32px;
+    padding:64px 56px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:40px;
+    flex-wrap:wrap;
+    max-width:1180px;
+    margin-inline:auto;
+  }
+  .cta-band h2{
+    color:white;
+    font-size:clamp(1.6rem,3vw,2.1rem);
+    max-width:480px;
+  }
+  .cta-band p{
+    color:rgba(255,255,255,0.85);
+    margin-top:10px;
+    font-size:0.98rem;
+  }
+  .cta-band .btn-primary{
+    background:white;
+    color:var(--ink);
+    box-shadow:none;
+  }
+  .cta-band .btn-primary:hover{
+    background:var(--ink);
+    color:white;
+  }
+
+  /* ============ CONTACT ============ */
+  .contact-grid{
+    display:grid;
+    grid-template-columns:1fr 1.1fr;
+    gap:56px;
+  }
+  .contact-info h2{
+    font-size:clamp(1.8rem,3vw,2.4rem);
+    margin-bottom:18px;
+  }
+  .contact-info > p{
+    color:var(--slate);
+    line-height:1.65;
+    margin-bottom:36px;
+    font-size:1.02rem;
+  }
+  .contact-channels{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+  }
+  .channel{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    background:white;
+    border:1px solid var(--line);
+    padding:18px 20px;
+    border-radius:14px;
+    transition:border-color .2s ease, transform .2s ease;
+  }
+  .channel:hover{
+    border-color:var(--blue);
+    transform:translateX(4px);
+  }
+  .channel .ic{
+    width:46px;height:46px;
+    border-radius:11px;
+    background:var(--paper-warm);
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+  }
+  .channel .meta span{
+    display:block;
+    font-size:0.78rem;
+    color:var(--slate);
+    margin-bottom:2px;
+  }
+  .channel .meta b{
+    font-size:1rem;
+    color:var(--ink);
+    font-weight:600;
+  }
+
+  .contact-form{
+    background:white;
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:38px;
+  }
+  .contact-form h3{
+    font-size:1.3rem;
+    margin-bottom:6px;
+  }
+  .contact-form > p{
+    color:var(--slate);
+    font-size:0.92rem;
+    margin-bottom:26px;
+  }
+  .form-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+    margin-bottom:16px;
+  }
+  .field{
+    display:flex;
+    flex-direction:column;
+    margin-bottom:16px;
+  }
+  .field label{
+    font-size:0.85rem;
+    font-weight:600;
+    margin-bottom:7px;
+    color:var(--ink-soft);
+  }
+  .field input, .field select, .field textarea{
+    border:1.5px solid var(--line);
+    border-radius:9px;
+    padding:12px 14px;
+    font-size:0.95rem;
+    font-family:inherit;
+    background:var(--paper-warm);
+    color:var(--ink);
+    transition:border-color .2s ease, background .2s ease;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus{
+    border-color:var(--blue);
+    background:white;
+    outline:none;
+  }
+  .field textarea{resize:vertical;min-height:90px;}
+  .submit-btn{
+    width:100%;
+    background:var(--grad);
+    color:white;
+    padding:15px;
+    border-radius:10px;
+    font-weight:600;
+    font-size:1rem;
+    margin-top:6px;
+    transition:transform .2s ease, box-shadow .2s ease;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+  }
+  .submit-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 24px rgba(10,112,243,0.3);
+  }
+  .form-success{
+    display:none;
+    text-align:center;
+    padding:30px 10px;
+  }
+  .form-success.show{display:block;}
+  .form-success .tick{
+    width:56px;height:56px;
+    border-radius:50%;
+    background:var(--grad);
+    display:flex;align-items:center;justify-content:center;
+    margin:0 auto 18px;
+  }
+  .form-success h3{margin-bottom:8px;}
+  .form-success p{color:var(--slate);font-size:0.95rem;}
+
+  /* ============ FOOTER ============ */
+  footer{
+    background:var(--ink);
+    color:rgba(255,255,255,0.6);
+    padding:56px 0 28px;
+  }
+  .footer-top{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:40px;
+    padding-bottom:40px;
+    border-bottom:1px solid rgba(255,255,255,0.1);
+    margin-bottom:24px;
+  }
+  .footer-brand{
+    max-width:320px;
+  }
+  .footer-brand .brand{color:white;margin-bottom:14px;}
+  .footer-brand p{
+    font-size:0.9rem;
+    line-height:1.6;
+    color:rgba(255,255,255,0.5);
+  }
+  .footer-cols{
+    display:flex;
+    gap:64px;
+  }
+  .footer-col h4{
+    font-family:'Inter',sans-serif;
+    font-size:0.85rem;
+    font-weight:600;
+    color:white;
+    margin-bottom:16px;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+  }
+  .footer-col a{
+    display:block;
+    font-size:0.9rem;
+    color:rgba(255,255,255,0.55);
+    margin-bottom:12px;
+    transition:color .2s ease;
+  }
+  .footer-col a:hover{color:var(--blue-light);}
+  .footer-bottom{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:12px;
+    font-size:0.85rem;
+  }
+  .footer-social{
+    display:flex;
+    gap:14px;
+  }
+  .footer-social a{
+    width:38px;height:38px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.08);
+    display:flex;align-items:center;justify-content:center;
+    transition:background .2s ease, transform .2s ease;
+  }
+  .footer-social a:hover{
+    background:var(--blue);
+    transform:translateY(-2px);
+  }
+
+  /* ============ SCROLL REVEAL ============ */
+  .reveal{
+    opacity:0;
+    transform:translateY(24px);
+    transition:opacity .7s ease, transform .7s ease;
+  }
+  .reveal.in{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+  /* ============ WHATSAPP FLOAT ============ */
+  .wa-float{
+    position:fixed;
+    bottom:24px;
+    right:24px;
+    z-index:90;
+    width:58px;height:58px;
+    border-radius:50%;
+    background:#25D366;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 8px 24px rgba(37,211,102,0.4);
+    transition:transform .2s ease;
+  }
+  .wa-float:hover{transform:scale(1.08);}
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width:980px){
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-visual{height:320px;order:-1;}
+    .problem-grid{grid-template-columns:1fr;}
+    .services-grid{grid-template-columns:1fr 1fr;}
+    .why-grid{grid-template-columns:1fr;}
+    .contact-grid{grid-template-columns:1fr;}
+    .footer-top{flex-direction:column;}
+    .nav-links{
+      position:fixed;
+      top:0;right:0;
+      height:100vh;
+      width:280px;
+      background:var(--ink);
+      flex-direction:column;
+      align-items:flex-start;
+      padding:100px 32px 32px;
+      gap:24px;
+      transform:translateX(100%);
+      transition:transform .3s ease;
+    }
+    .nav-links.open{transform:translateX(0);}
+    .nav-links a{color:rgba(255,255,255,0.85);}
+    .nav-toggle{
+      display:flex;
+      flex-direction:column;
+      gap:5px;
+      width:28px;
+      z-index:101;
+    }
+    .nav-toggle span{
+      height:2px;
+      background:var(--ink);
+      border-radius:2px;
+      transition:transform .25s ease, opacity .25s ease;
+    }
+    .nav-toggle.active span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+    .nav-toggle.active span:nth-child(2){opacity:0;}
+    .nav-toggle.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  }
+  @media (max-width:680px){
+    .wrap{padding:0 20px;}
+    nav{padding:14px 20px;}
+    .hero{padding:140px 0 70px;}
+    .process-row{grid-template-columns:1fr;gap:8px;}
+    .services-grid{grid-template-columns:1fr;}
+    .cta-band{margin:0 20px;padding:44px 28px;flex-direction:column;text-align:center;}
+    .form-row{grid-template-columns:1fr;}
+    .hero-trust{gap:20px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important;transition:none !important;}
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header id="siteHeader">
+  <nav>
+    <a href="#home" class="brand">
+      <img src="assets/logo.png" alt="Entraply logo">
+      Entraply
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About Us</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact">Contact Us</a></li>
+      <li><a href="tel:+918527582959" class="nav-cta">Call Now</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="home">
+  <div class="hero-bg-cut"></div>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="reveal in">
+        <div class="eyebrow"><span class="dot"></span> Business Transformation Partner</div>
+        <h1>
+          Your customers are already searching.<br>
+          <span class="cut-line"><span class="struck">Without a website,</span> <span class="grad-text">they find someone else.</span></span>
+        </h1>
+        <p class="lead">Entraply builds the website, automation, and lead system that traditional businesses are missing — so the next customer who searches for you actually finds you, books with you, and comes back.</p>
+        <div class="hero-ctas">
+          <a href="#contact" class="btn-primary">
+            Get a Free Growth Audit
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="tel:+918527582959" class="btn-secondary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 5a2 2 0 012-2h2.28a1 1 0 01.97.76l1.2 4.8a1 1 0 01-.27.95l-1.7 1.7a13.5 13.5 0 006.36 6.36l1.7-1.7a1 1 0 01.95-.27l4.8 1.2a1 1 0 01.76.97V21a2 2 0 01-2 2h-1C9.7 23 1 14.3 1 4V3z" stroke="#091628" stroke-width="1.6"/></svg>
+            +91 85275 82959
+          </a>
+        </div>
+        <div class="hero-trust">
+          <div class="stat"><b>1 system</b><span>instead of 6 tools</span></div>
+          <div class="stat"><b>14–21 days</b><span>typical go‑live time</span></div>
+          <div class="stat"><b>0</b><span>tech team needed on your side</span></div>
+        </div>
+      </div>
+      <div class="hero-visual reveal in">
+        <div class="cut-card">
+          <div class="label-before">Right now<span class="big">Invisible online</span></div>
+          <div class="arrow-stripe"></div>
+          <div class="label-after">With Entraply<span class="big">Found. Booked. Back again.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROBLEM ============ -->
+<section class="problem" id="about">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dot"></span> About Us</div>
+      <h2>Most businesses don't lose to a better competitor. They lose to a visible one.</h2>
+      <p>Entraply exists because of one pattern we kept seeing in salons, gyms, clinics, restaurants and local stores: the work is good, the service is real — but the business is invisible the moment someone searches online. We close that gap with one connected system instead of five disconnected freelancers.</p>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card reveal">
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M11 19a8 8 0 100-16 8 8 0 000 16zM21 21l-4.35-4.35" stroke="#3B9CFF" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <h3>No website, no proof</h3>
+        <p>A customer searches your business name and finds nothing — or worse, finds a competitor instead. No website means no trust before the first call.</p>
+      </div>
+      <div class="problem-card reveal">
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.91.67 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.9.31 1.85.54 2.81.67A2 2 0 0122 16.92z" stroke="#3B9CFF" stroke-width="1.6"/></svg></div>
+        <h3>Leads slip through WhatsApp</h3>
+        <p>Enquiries come in on calls and WhatsApp and get forgotten in the rush of running the business. No follow-up system means paid-for leads go cold for free.</p>
+      </div>
+      <div class="problem-card reveal">
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 3v18h18M7 13l4-4 3 3 5-6" stroke="#3B9CFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>No system to repeat what works</h3>
+        <p>A good week happens, but nobody knows why. Without a CRM or simple automation, growth depends on luck instead of a process you can repeat.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dot"></span> Services</div>
+      <h2>Five pieces. One system.</h2>
+      <p>You don't need five vendors who don't talk to each other. Entraply builds and connects every part of your online growth so it works as one machine, not five separate bills.</p>
+    </div>
+    <div class="services-grid">
+
+      <div class="service-card reveal">
+        <span class="num">01</span>
+        <div class="icon-box"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="14" rx="2" stroke="#0A70F3" stroke-width="1.7"/><path d="M3 9h18M8 4v0" stroke="#0A70F3" stroke-width="1.7"/></svg></div>
+        <h3>Website Development</h3>
+        <p>A fast, mobile-first website that makes your business look as good online as it is in person — built to convert visitors into enquiries, not just look nice.</p>
+        <div class="tags"><span>Business sites</span><span>Booking pages</span><span>Landing pages</span></div>
+      </div>
+
+      <div class="service-card reveal">
+        <span class="num">02</span>
+        <div class="icon-box"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3 11l18-7-7 18-3-7-8-4z" stroke="#0A70F3" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
+        <h3>Digital Marketing</h3>
+        <p>Social media, ads, and content that put your business in front of people who are already looking for what you offer — not random impressions nobody acts on.</p>
+        <div class="tags"><span>Social media</span><span>Paid ads</span><span>Content</span></div>
+      </div>
+
+      <div class="service-card reveal">
+        <span class="num">03</span>
+        <div class="icon-box"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#0A70F3" stroke-width="1.7"/><path d="M21 21l-4.3-4.3" stroke="#0A70F3" stroke-width="1.7" stroke-linecap="round"/></svg></div>
+        <h3>SEO</h3>
+        <p>We get your business showing up when people search on Google and Maps — so the customer searching "near me" finds you first, not your competitor.</p>
+        <div class="tags"><span>Google ranking</span><span>Maps listing</span><span>Local SEO</span></div>
+      </div>
+
+      <div class="service-card reveal">
+        <span class="num">04</span>
+        <div class="icon-box"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M17 1l4 4-4 4M3 11V9a4 4 0 014-4h14M7 23l-4-4 4-4M21 13v2a4 4 0 01-4 4H3" stroke="#0A70F3" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Automation</h3>
+        <p>Auto-replies on WhatsApp, follow-up reminders, missed-call texts — so no enquiry ever gets forgotten, even when you're busy running the business.</p>
+        <div class="tags"><span>WhatsApp</span><span>Reminders</span><span>Follow-ups</span></div>
+      </div>
+
+      <div class="service-card reveal">
+        <span class="num">05</span>
+        <div class="icon-box"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="#0A70F3" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>CRM Solutions</h3>
+        <p>Every enquiry, lead, and customer in one place — so you always know who to follow up with, who's due a reminder, and who hasn't booked again yet.</p>
+        <div class="tags"><span>Lead tracking</span><span>Customer history</span><span>Pipelines</span></div>
+      </div>
+
+      <div class="service-card reveal" style="background:var(--ink);border-color:var(--ink);">
+        <div class="icon-box" style="background:rgba(10,112,243,0.18);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h8l-1 8 11-12h-8l1-8z" stroke="#3B9CFF" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
+        <h3 style="color:white;">Not sure where to start?</h3>
+        <p style="color:rgba(255,255,255,0.65);">Tell us your business once. We'll tell you exactly which of these five you actually need first — no upsell, just a plan.</p>
+        <a href="#contact" class="btn-secondary" style="border-color:rgba(255,255,255,0.25);color:white;margin-top:4px;">Talk to us free →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section class="process">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dot"></span> How It Works</div>
+      <h2>From invisible to booked, in three steps.</h2>
+      <p>No jargon, no long contracts upfront. Just a clear path from where you are now to a business that's easy to find and easy to book.</p>
+    </div>
+    <div class="process-list">
+      <div class="process-row reveal">
+        <div class="step-num">01</div>
+        <h3>Free Growth Audit</h3>
+        <p>We look at how your business actually shows up online today — Google, Maps, WhatsApp, your current site if you have one — and tell you honestly what's costing you customers.</p>
+      </div>
+      <div class="process-row reveal">
+        <div class="step-num">02</div>
+        <h3>We Build Your System</h3>
+        <p>Website, automation, and CRM get built and connected together — not as separate add-ons, but as one system designed around how your business actually runs.</p>
+      </div>
+      <div class="process-row reveal">
+        <div class="step-num">03</div>
+        <h3>We Stay and Optimize</h3>
+        <p>We track what's working, fix what isn't, and keep improving your visibility and follow-up — so growth keeps compounding instead of stalling after launch.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY US ============ -->
+<section>
+  <div class="wrap">
+    <div class="why-grid">
+      <div class="reveal">
+        <div class="eyebrow"><span class="dot"></span> Why Entraply</div>
+        <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);margin-bottom:30px;">Most agencies sell you one piece. We hand you the whole machine.</h2>
+        <div class="why-list">
+          <div class="why-item">
+            <div class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div><h4>One team, one accountability</h4><p>No pointing fingers between your "website guy" and your "marketing guy." One team owns the whole result.</p></div>
+          </div>
+          <div class="why-item">
+            <div class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div><h4>Built for how you actually run</h4><p>We design around your real business — walk-ins, WhatsApp enquiries, repeat customers — not a generic template.</p></div>
+          </div>
+          <div class="why-item">
+            <div class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div><h4>No long lock-in to start</h4><p>You see the audit and the plan before you commit to anything. If it's not a fit, you'll hear that from us directly.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="why-visual reveal">
+        <div class="quote-mark">"</div>
+        <p>We didn't need another vendor. We needed someone who understood that our business runs on WhatsApp and walk-ins — and built for that, not for a template.</p>
+        <div class="attribution">
+          <div class="av">RI</div>
+          <div><b>How most of our clients describe it</b><span>Local business owner, Gurugram NCR</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA BAND ============ -->
+<section style="padding-top:0;">
+  <div class="cta-band reveal">
+    <div>
+      <h2>Ready to stop losing customers to invisibility?</h2>
+      <p>Book a free 20-minute audit. No pressure, no obligation — just a clear picture of where you're losing customers right now.</p>
+    </div>
+    <a href="#contact" class="btn-primary">Book Free Audit →</a>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="eyebrow"><span class="dot"></span> Contact Us</div>
+        <h2>Let's talk about your business.</h2>
+        <p>Call us directly, message on WhatsApp, or fill the form — whichever is easiest for you. We usually reply within a few hours.</p>
+        <div class="contact-channels">
+          <a href="tel:+918527582959" class="channel">
+            <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 5a2 2 0 012-2h2.28a1 1 0 01.97.76l1.2 4.8a1 1 0 01-.27.95l-1.7 1.7a13.5 13.5 0 006.36 6.36l1.7-1.7a1 1 0 01.95-.27l4.8 1.2a1 1 0 01.76.97V21a2 2 0 01-2 2h-1C9.7 23 1 14.3 1 4V3z" stroke="#0A70F3" stroke-width="1.6"/></svg></div>
+            <div class="meta"><span>Call us directly</span><b>+91 85275 82959</b></div>
+          </a>
+          <a href="https://wa.me/918527582959" target="_blank" rel="noopener" class="channel">
+            <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.91.67 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.9.31 1.85.54 2.81.67A2 2 0 0122 16.92z" stroke="#0A70F3" stroke-width="1.6"/></svg></div>
+            <div class="meta"><span>Message on WhatsApp</span><b>+91 85275 82959</b></div>
+          </a>
+          <a href="mailto:hello.entraply@gmail.com" class="channel">
+            <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 4h16v16H4V4z" stroke="#0A70F3" stroke-width="1.6"/><path d="M4 6l8 7 8-7" stroke="#0A70F3" stroke-width="1.6"/></svg></div>
+            <div class="meta"><span>Email us</span><b>hello.entraply@gmail.com</b></div>
+          </a>
+          <a href="https://www.linkedin.com/company/entraply/" target="_blank" rel="noopener" class="channel">
+            <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z" stroke="#0A70F3" stroke-width="1.6"/><rect x="2" y="9" width="4" height="12" stroke="#0A70F3" stroke-width="1.6"/><circle cx="4" cy="4" r="2" stroke="#0A70F3" stroke-width="1.6"/></svg></div>
+            <div class="meta"><span>Follow on LinkedIn</span><b>linkedin.com/company/entraply</b></div>
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-form reveal">
+        <div id="formDefault">
+          <h3>Get your free growth audit</h3>
+          <p>Tell us a little about your business. We'll reply with what we find.</p>
+          <form id="leadForm">
+            <div class="form-row">
+              <div class="field">
+                <label for="fname">Your name</label>
+                <input type="text" id="fname" required placeholder="e.g. Rohit Sharma">
+              </div>
+              <div class="field">
+                <label for="fphone">Phone number</label>
+                <input type="tel" id="fphone" required placeholder="98xxxxxxx0">
+              </div>
+            </div>
+            <div class="field">
+              <label for="fbiz">Business type</label>
+              <select id="fbiz">
+                <option>Salon / Spa</option>
+                <option>Gym / Fitness Studio</option>
+                <option>Hotel</option>
+                <option>Restaurant / Cafe</option>
+                <option>Clinic / Healthcare</option>
+                <option>Coaching Institute</option>
+                <option>Retail Store</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="fmsg">What do you need help with?</label>
+              <textarea id="fmsg" placeholder="e.g. I don't have a website yet, and I lose track of WhatsApp enquiries."></textarea>
+            </div>
+            <button type="submit" class="submit-btn">
+              Request Free Audit
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </form>
+        </div>
+        <div class="form-success" id="formSuccess">
+          <div class="tick"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3>Got it — thank you.</h3>
+          <p>We'll reach out on the number you shared within a few hours. If it's urgent, just call us directly at <a href="tel:+918527582959" style="color:var(--blue);font-weight:600;">+91 85275 82959</a>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#home" class="brand"><img src="assets/logo.png" alt="Entraply logo">Entraply</a>
+        <p>We help traditional businesses become technology-driven businesses — one connected system at a time. Based in Gurugram, working across India.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="#home">Home</a>
+          <a href="#about">About Us</a>
+          <a href="#services">Services</a>
+          <a href="#contact">Contact Us</a>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <a href="#services">Website Development</a>
+          <a href="#services">Digital Marketing</a>
+          <a href="#services">SEO</a>
+          <a href="#services">Automation</a>
+          <a href="#services">CRM Solutions</a>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <a href="tel:+918527582959">+91 85275 82959</a>
+          <a href="mailto:hello.entraply@gmail.com">hello.entraply@gmail.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Entraply. All rights reserved.</span>
+      <div class="footer-social">
+        <a href="https://www.linkedin.com/company/entraply/" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z" stroke="white" stroke-width="1.6"/><rect x="2" y="9" width="4" height="12" stroke="white" stroke-width="1.6"/><circle cx="4" cy="4" r="2" stroke="white" stroke-width="1.6"/></svg>
+        </a>
+        <a href="https://wa.me/918527582959" target="_blank" rel="noopener" aria-label="WhatsApp">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.91.67 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.9.31 1.85.54 2.81.67A2 2 0 0122 16.92z" stroke="white" stroke-width="1.6"/></svg>
+        </a>
+        <a href="mailto:hello.entraply@gmail.com" aria-label="Email">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 4h16v16H4V4z" stroke="white" stroke-width="1.6"/><path d="M4 6l8 7 8-7" stroke="white" stroke-width="1.6"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp floating button -->
+<a href="https://wa.me/918527582959" target="_blank" rel="noopener" class="wa-float" aria-label="Chat on WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.91.67 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.9.31 1.85.54 2.81.67A2 2 0 0122 16.92z" fill="white"/></svg>
+</a>
+
+<script>
+  // Header scroll state
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 10);
+  });
+
+  // Mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    navToggle.classList.toggle('active');
+    navLinks.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navToggle.classList.remove('active');
+    navLinks.classList.remove('open');
+  }));
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+
+  // Contact form -> WhatsApp handoff (no backend needed, fully workable)
+  const leadForm = document.getElementById('leadForm');
+  leadForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    const name = document.getElementById('fname').value.trim();
+    const phone = document.getElementById('fphone').value.trim();
+    const biz = document.getElementById('fbiz').value;
+    const msg = document.getElementById('fmsg').value.trim();
+
+    const text = `Hi Entraply, I'd like a free growth audit.%0A%0AName: ${encodeURIComponent(name)}%0APhone: ${encodeURIComponent(phone)}%0ABusiness type: ${encodeURIComponent(biz)}%0ADetails: ${encodeURIComponent(msg || 'N/A')}`;
+
+    document.getElementById('formDefault').style.display = 'none';
+    document.getElementById('formSuccess').classList.add('show');
+
+    window.open(`https://wa.me/918527582959?text=${text}`, '_blank');
+  });
+</script>
+
+</body>
+</html>
